@@ -155,7 +155,7 @@
             title2: "DEVELOPER",
             location: "Birmingham, UK",
             email: "hammad2@live.com",
-            phone: "+44 7340 768070",
+            github: "https://github.com/nextgrwww",
             role: "Freelance Web Developer & Linux Enthusiast",
             description: "I'm a UK-based Full Stack Developer specializing in Linux environments, web applications, and automation solutions."
           };
@@ -182,12 +182,12 @@
               period: "July 2014 - Sep 2019",
               desc: "Web Application Development, Control & Deployment of IT related setup for Govt. contracts."
             },
-            {
+            {/* {
               company: "Shiblee Group of Colleges",
               role: "Lecturer & Admin IT",
               period: "Mar 2012 - July 2014",
               desc: "Lectureship, organizing IT department policies and LAN management."
-            }
+            } */}
           ];
 
           const projects = [
@@ -416,6 +416,7 @@
                   Thoughts on development, linux environment, and software architecture.
                 </p>
               </div>
+                
 
               <div className="space-y-6">
                 {blogs.map((blog, idx) => (
@@ -466,7 +467,7 @@
                     </div>
                   </div>
                   
-                  <div className="flex items-start gap-4">
+                  {/* <div className="flex items-start gap-4">
                     <div className="p-3 bg-indigo-50 dark:bg-indigo-900/20 rounded-lg text-indigo-500">
                       <IconPhone size={24} />
                     </div>
@@ -474,7 +475,17 @@
                       <h3 className="font-bold text-slate-900 dark:text-white mb-1">Phone</h3>
                       <p className="text-slate-600 dark:text-slate-400 text-sm">{personalInfo.phone}</p>
                     </div>
+                  </div> */}
+                  // Replace the IconPhone block with this:
+                <div className="flex items-start gap-4">
+                  <div className="p-3 bg-indigo-50 dark:bg-indigo-900/20 rounded-lg text-indigo-500">
+                    <IconGithub size={24} />
                   </div>
+                  <div>
+                    <h3 className="font-bold text-slate-900 dark:text-white mb-1">GitHub</h3>
+                    <p className="text-slate-600 dark:text-slate-400 text-sm">github.com/your-username</p>
+                  </div>
+                </div>
 
                   <div className="flex items-start gap-4">
                     <div className="p-3 bg-indigo-50 dark:bg-indigo-900/20 rounded-lg text-indigo-500">
