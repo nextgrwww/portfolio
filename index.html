@@ -1,0 +1,376 @@
+import React, { useState } from 'react';
+import { Hand, Moon, Sun, Github, Linkedin, Mail, ExternalLink, Code2, Terminal, Database, Cpu, Globe, LayoutTemplate } from 'lucide-react';
+
+export default function App() {
+  const [isDark, setIsDark] = useState(false);
+  const [activeTab, setActiveTab] = useState('Home');
+
+  // --- Data populated from CV & Files ---
+
+  const personalInfo = {
+    name: "Hammad Ahmed",
+    title1: "FULL STACK",
+    title2: "DEVELOPER",
+    location: "Birmingham, UK",
+    role: "Freelance Web Developer & Linux Enthusiast",
+    description: "I'm a UK-based Full Stack Developer specializing in Linux environments, web applications, and automation solutions."
+  };
+
+  const skills = [
+    { name: "Web Development", icon: Globe, level: "Expert" },
+    { name: "Linux & Bash", icon: Terminal, level: "Expert" },
+    { name: "PHP & MySQL", icon: Database, level: "Advanced" },
+    { name: "Chrome Extensions", icon: Cpu, level: "Specialist" },
+    { name: "React & JS", icon: Code2, level: "Advanced" },
+    { name: "Software Dev", icon: LayoutTemplate, level: "Professional" }
+  ];
+
+  const experience = [
+    {
+      company: "Fiverr",
+      role: "Full Stack Freelance Web Developer",
+      period: "Sep 2019 - July 2024",
+      desc: "Creating, deploying and managing business solutions in the form of web applications."
+    },
+    {
+      company: "Console Enterprises",
+      role: "IT Manager",
+      period: "July 2014 - Sep 2019",
+      desc: "Web Application Development, Control & Deployment of IT related setup for Govt. contracts."
+    },
+    {
+      company: "Shiblee Group of Colleges",
+      role: "Lecturer & Admin IT",
+      period: "Mar 2012 - July 2014",
+      desc: "Lectureship, organizing IT department policies and LAN management."
+    }
+  ];
+
+  const projects = [
+    {
+      title: "Data Ripper",
+      category: "Chrome Extension",
+      image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=800&auto=format&fit=crop",
+      desc: "A powerful browser extension for automated data extraction and context management.",
+      tech: ["JavaScript", "Chrome API", "Automation"]
+    },
+    {
+      title: "Premium Spaces",
+      category: "Web Application",
+      image: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?q=80&w=800&auto=format&fit=crop",
+      desc: "Comprehensive property management system with admin dashboards and user roles.",
+      tech: ["PHP", "MySQL", "Bootstrap"]
+    },
+    {
+      title: "Sunny Skeleton",
+      category: "Framework",
+      image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=800&auto=format&fit=crop",
+      desc: "A lightweight, custom web development framework/boilerplate for rapid prototyping.",
+      tech: ["PHP", "JavaScript", "Markdown"]
+    },
+    {
+      title: "Console Insight",
+      category: "Business Solution",
+      image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=800&auto=format&fit=crop",
+      desc: "Enterprise-grade web application for data insight and management.",
+      tech: ["HTML5", "CSS3", "JS"]
+    },
+    {
+      title: "Next Education",
+      category: "Educational Platform",
+      image: "https://images.unsplash.com/photo-1501504905252-473c47e087f8?q=80&w=800&auto=format&fit=crop",
+      desc: "Institutional website for NEXT Computer Education managing academic resources.",
+      tech: ["Web Tech", "Education"]
+    },
+    {
+      title: "Hang Ten",
+      category: "E-Commerce",
+      image: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?q=80&w=800&auto=format&fit=crop",
+      desc: "Brand retail website focusing on responsive design and user experience.",
+      tech: ["Frontend", "Design"]
+    }
+  ];
+
+  const blogs = [
+    {
+      title: "Automating Daily Tasks with Bash Scripting",
+      date: "Feb 2, 2026",
+      readTime: "5 min read",
+      excerpt: "Why spend hours on repetitive tasks when a simple shell script can do it for you? A guide to cron jobs and shell automation.",
+      tag: "Linux"
+    },
+    {
+      title: "Building Robust Chrome Extensions in 2026",
+      date: "Jan 15, 2026",
+      readTime: "8 min read",
+      excerpt: "Lessons learned from developing 'Data Ripper'. Handling manifest v3, content scripts, and persistent background states.",
+      tag: "Development"
+    },
+    {
+      title: "Why PHP Still Powers the Web",
+      date: "Dec 20, 2025",
+      readTime: "6 min read",
+      excerpt: "Despite the rise of JS frameworks, modern PHP offers a speed and reliability for backend logic that is hard to beat.",
+      tag: "Backend"
+    }
+  ];
+
+  // --- Components ---
+
+  const Hero = () => (
+    <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center w-full relative animate-in fade-in duration-700">
+      <div className="lg:col-span-4 flex flex-col items-center lg:items-end text-center lg:text-right z-10 order-2 lg:order-1">
+        <div className="mb-2 lg:mr-1">
+          <span className="block text-xs font-bold tracking-[0.25em] text-slate-500 dark:text-slate-400 uppercase mb-2">
+            {personalInfo.name}
+          </span>
+          <h1 className="font-display font-bold text-huge tracking-tight text-slate-900 dark:text-white transition-colors duration-300">
+            {personalInfo.title1}
+          </h1>
+        </div>
+      </div>
+
+      <div className="lg:col-span-4 flex justify-center relative z-0 order-1 lg:order-2 mb-8 lg:mb-0">
+        <div className="relative group">
+          <div className="relative overflow-hidden rounded-[2rem] w-[280px] h-[380px] sm:w-[320px] sm:h-[440px] shadow-2xl transition-transform duration-700 hover:scale-[1.01]">
+            <div className="absolute inset-0 bg-slate-200 dark:bg-slate-800 animate-pulse" />
+            <img 
+              src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=800&auto=format&fit=crop" 
+              alt={personalInfo.name}
+              className="w-full h-full object-cover relative z-10 grayscale hover:grayscale-0 transition-all duration-500"
+            />
+          </div>
+          <button 
+            className="absolute -bottom-8 -left-8 w-20 h-20 bg-[#7B86F5] rounded-full flex items-center justify-center text-white shadow-xl border-[6px] border-white dark:border-slate-950 z-20 cursor-pointer hover:bg-[#6872eb] transition-all hover:scale-110 active:scale-95 group-hover:rotate-12 duration-300"
+            aria-label="Say Hello"
+          >
+            <Hand className="w-8 h-8 stroke-[2.5]" />
+          </button>
+        </div>
+      </div>
+
+      <div className="lg:col-span-4 flex flex-col items-center lg:items-start text-center lg:text-left z-10 order-3">
+          <div className="mt-2 lg:ml-1">
+          <h1 className="font-display font-bold text-huge tracking-tight text-slate-900 dark:text-white leading-[0.85] transition-colors duration-300">
+            {personalInfo.title2}
+          </h1>
+          <div className="mt-4 max-w-[250px] mx-auto lg:mx-0">
+            <p className="text-sm text-slate-500 dark:text-slate-400 font-medium leading-relaxed">
+              {personalInfo.description}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+
+  const About = () => (
+    <div className="w-full max-w-5xl mx-auto animate-in slide-in-from-bottom-8 duration-500">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mb-16">
+        <div>
+          <h2 className="font-display text-4xl font-bold mb-6 text-slate-900 dark:text-white">About Me</h2>
+          <p className="text-slate-600 dark:text-slate-300 leading-relaxed mb-6">
+            I am a results-driven professional seeking a structured environment to apply my freelance expertise. 
+            With a strong background in both academic teaching and practical software development, I bridge the gap between complex technical concepts and user-friendly solutions.
+          </p>
+          <p className="text-slate-600 dark:text-slate-300 leading-relaxed mb-8">
+            My journey includes scaling freelance businesses on Fiverr, managing IT infrastructure for government contractors, and teaching the next generation of CS students.
+            I currently reside in <span className="text-indigo-500 font-semibold">{personalInfo.location}</span>.
+          </p>
+          <div className="flex gap-4">
+            <a href="#" className="p-3 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-[#0077b5] hover:text-white transition-colors"><Linkedin size={20} /></a>
+            <a href="#" className="p-3 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-900 hover:text-white transition-colors"><Github size={20} /></a>
+            <a href="#" className="p-3 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-red-500 hover:text-white transition-colors"><Mail size={20} /></a>
+          </div>
+        </div>
+        
+        <div>
+          <h3 className="font-display text-2xl font-bold mb-6 text-slate-900 dark:text-white">Technical Arsenal</h3>
+          <div className="grid grid-cols-2 gap-4">
+            {skills.map((skill, idx) => (
+              <div key={idx} className="p-4 rounded-xl bg-slate-50 dark:bg-slate-800/50 border border-slate-100 dark:border-slate-700 flex items-center gap-3 hover:border-indigo-500/30 transition-colors">
+                <skill.icon className="w-6 h-6 text-indigo-500" />
+                <div>
+                  <div className="font-bold text-slate-900 dark:text-white text-sm">{skill.name}</div>
+                  <div className="text-xs text-slate-500 dark:text-slate-400">{skill.level}</div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <div className="border-t border-slate-200 dark:border-slate-800 pt-16">
+        <h3 className="font-display text-2xl font-bold mb-8 text-slate-900 dark:text-white text-center">Experience History</h3>
+        <div className="space-y-8">
+          {experience.map((job, idx) => (
+            <div key={idx} className="relative pl-8 md:pl-0">
+              <div className="md:flex items-start justify-between group">
+                <div className="hidden md:block w-32 pt-1 text-right text-sm font-bold text-slate-400 dark:text-slate-500">{job.period}</div>
+                
+                {/* Timeline Dot */}
+                <div className="absolute left-0 md:left-[9.5rem] mt-1.5 w-3 h-3 rounded-full bg-indigo-500 ring-4 ring-white dark:ring-slate-950"></div>
+                
+                <div className="md:w-[calc(100%-11rem)] pl-8">
+                  <div className="md:hidden text-xs font-bold text-indigo-500 mb-1">{job.period}</div>
+                  <h4 className="text-lg font-bold text-slate-900 dark:text-white group-hover:text-indigo-500 transition-colors">{job.role}</h4>
+                  <div className="text-sm font-medium text-slate-500 dark:text-slate-400 mb-2">{job.company}</div>
+                  <p className="text-slate-600 dark:text-slate-300 text-sm leading-relaxed max-w-2xl">{job.desc}</p>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+
+  const Projects = () => (
+    <div className="w-full max-w-6xl mx-auto animate-in slide-in-from-bottom-8 duration-500">
+      <div className="text-center mb-12">
+        <h2 className="font-display text-4xl font-bold mb-4 text-slate-900 dark:text-white">Featured Projects</h2>
+        <p className="text-slate-500 dark:text-slate-400 max-w-2xl mx-auto">
+          A selection of web applications, extensions, and automated solutions built to solve real-world problems.
+        </p>
+      </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {projects.map((project, idx) => (
+          <div key={idx} className="group bg-white dark:bg-slate-900 rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-800 hover:border-indigo-500/50 hover:shadow-xl transition-all duration-300">
+            <div className="relative overflow-hidden h-48">
+              <div className="absolute inset-0 bg-slate-900/10 dark:bg-slate-900/40 group-hover:opacity-0 transition-opacity z-10" />
+              <img src={project.image} alt={project.title} className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500" />
+            </div>
+            <div className="p-6">
+              <div className="flex justify-between items-start mb-3">
+                <div>
+                  <div className="text-xs font-bold text-indigo-500 uppercase tracking-wider mb-1">{project.category}</div>
+                  <h3 className="font-display text-xl font-bold text-slate-900 dark:text-white">{project.title}</h3>
+                </div>
+                <a href="#" className="text-slate-400 hover:text-indigo-500 transition-colors"><ExternalLink size={18} /></a>
+              </div>
+              <p className="text-sm text-slate-600 dark:text-slate-300 mb-4 line-clamp-2">{project.desc}</p>
+              <div className="flex flex-wrap gap-2">
+                {project.tech.map((t, i) => (
+                  <span key={i} className="px-2 py-1 text-[10px] font-medium bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 rounded-md">
+                    {t}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+
+  const Blogs = () => (
+    <div className="w-full max-w-3xl mx-auto animate-in slide-in-from-bottom-8 duration-500">
+       <div className="text-center mb-12">
+        <h2 className="font-display text-4xl font-bold mb-4 text-slate-900 dark:text-white">Technical Insights</h2>
+        <p className="text-slate-500 dark:text-slate-400">
+          Thoughts on development, linux environment, and software architecture.
+        </p>
+      </div>
+
+      <div className="space-y-6">
+        {blogs.map((blog, idx) => (
+          <article key={idx} className="group relative bg-white dark:bg-slate-900 p-6 sm:p-8 rounded-2xl border border-slate-200 dark:border-slate-800 hover:border-indigo-500/50 transition-all duration-300">
+            <div className="flex flex-col sm:flex-row gap-4 sm:items-center justify-between mb-4">
+              <div className="flex items-center gap-3">
+                <span className="px-3 py-1 text-xs font-bold text-indigo-500 bg-indigo-50 dark:bg-indigo-900/30 rounded-full">{blog.tag}</span>
+                <span className="text-xs text-slate-400 font-medium">{blog.readTime}</span>
+              </div>
+              <span className="text-xs text-slate-400 font-medium">{blog.date}</span>
+            </div>
+            
+            <h3 className="font-display text-2xl font-bold text-slate-900 dark:text-white mb-3 group-hover:text-indigo-500 transition-colors">
+              <a href="#" className="before:absolute before:inset-0">{blog.title}</a>
+            </h3>
+            
+            <p className="text-slate-600 dark:text-slate-300 leading-relaxed">
+              {blog.excerpt}
+            </p>
+            
+            <div className="mt-4 flex items-center text-sm font-bold text-slate-900 dark:text-white group-hover:translate-x-1 transition-transform">
+              Read Article <span className="ml-1 text-lg leading-none">&rarr;</span>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  );
+
+  return (
+    <div className={isDark ? "dark" : ""}>
+      <div className="min-h-screen bg-white dark:bg-slate-950 text-slate-900 dark:text-white font-body selection:bg-indigo-100 dark:selection:bg-indigo-900 overflow-x-hidden transition-colors duration-300 flex flex-col">
+        {/* Font Imports */}
+        <style>{`
+          @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Inter:wght@300;400;500;600&display=swap');
+          .font-display { font-family: 'Oswald', sans-serif; }
+          .font-body { font-family: 'Inter', sans-serif; }
+          .text-huge {
+            font-size: clamp(3rem, 10vw, 8rem);
+            line-height: 0.9;
+          }
+        `}</style>
+
+        {/* --- Navigation Bar --- */}
+        <div className="fixed top-0 left-0 right-0 flex justify-center z-50 pt-8 pb-4 px-4">
+          <nav className="flex items-center gap-1 p-1.5 pl-2 bg-white/90 dark:bg-slate-900/90 backdrop-blur-sm border border-slate-100 dark:border-slate-800 rounded-full shadow-[0_8px_30px_rgb(0,0,0,0.04)] dark:shadow-[0_8px_30px_rgb(0,0,0,0.4)] transition-all duration-300">
+            
+            <div className="mr-2">
+              <img 
+                src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=100&auto=format&fit=crop" 
+                alt="Profile" 
+                className="w-9 h-9 rounded-full object-cover border border-slate-200 dark:border-slate-700 grayscale hover:grayscale-0 transition-all"
+              />
+            </div>
+
+            <div className="hidden md:flex items-center">
+              {['Home', 'About', 'Projects', 'Blogs'].map((item) => (
+                <button 
+                  key={item} 
+                  onClick={() => setActiveTab(item)}
+                  className={`px-4 py-2 text-sm font-medium transition-colors rounded-full ${
+                    activeTab === item 
+                      ? 'bg-slate-100 dark:bg-slate-800 text-black dark:text-white' 
+                      : 'text-slate-500 dark:text-slate-400 hover:text-black dark:hover:text-white'
+                  }`}
+                >
+                  {item}
+                </button>
+              ))}
+            </div>
+
+            <button
+              onClick={() => setIsDark(!isDark)}
+              className="p-2 ml-1 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-400 transition-colors"
+              aria-label="Toggle Dark Mode"
+            >
+              {isDark ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
+            </button>
+
+            <a 
+              href="#contact"
+              className="ml-2 bg-[#1a1a1a] dark:bg-white text-white dark:text-black px-6 py-2.5 rounded-full text-sm font-medium hover:bg-black dark:hover:bg-slate-200 transition-colors"
+            >
+              Contact
+            </a>
+          </nav>
+        </div>
+
+        {/* --- Main Content Area --- */}
+        <main className="flex-grow flex flex-col items-center justify-center px-4 pt-32 pb-12 w-full max-w-[1600px] mx-auto min-h-screen">
+          {activeTab === 'Home' && <Hero />}
+          {activeTab === 'About' && <About />}
+          {activeTab === 'Projects' && <Projects />}
+          {activeTab === 'Blogs' && <Blogs />}
+        </main>
+
+        {/* Background Gradients */}
+        <div className="fixed inset-0 -z-10 h-full w-full bg-white dark:bg-slate-950 [background:radial-gradient(125%_125%_at_50%_10%,#fff_40%,#F5F5FF_100%)] dark:[background:radial-gradient(125%_125%_at_50%_10%,#0f172a_40%,#020617_100%)] transition-colors duration-300"></div>
+      </div>
+    </div>
+  );
+}
