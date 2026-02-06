@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Hand, Moon, Sun, Github, Linkedin, Mail, ExternalLink, Code2, Terminal, Database, Cpu, Globe, LayoutTemplate } from 'lucide-react';
+import { Hand, Moon, Sun, Github, Linkedin, Mail, ExternalLink, Code2, Terminal, Database, Cpu, Globe, LayoutTemplate, Send, Phone, MapPin } from 'lucide-react';
 
 export default function App() {
   const [isDark, setIsDark] = useState(false);
@@ -12,6 +12,8 @@ export default function App() {
     title1: "FULL STACK",
     title2: "DEVELOPER",
     location: "Birmingham, UK",
+    email: "hammad2@live.com",
+    phone: "+44 7340 768070",
     role: "Freelance Web Developer & Linux Enthusiast",
     description: "I'm a UK-based Full Stack Developer specializing in Linux environments, web applications, and automation solutions."
   };
@@ -84,9 +86,9 @@ export default function App() {
     },
     {
       title: "Hang Ten",
-      category: "E-Commerce",
+      category: "Web Game",
       image: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?q=80&w=800&auto=format&fit=crop",
-      desc: "Brand retail website focusing on responsive design and user experience.",
+      desc: "A spelling completing classic kids' game called 'Hang-ten' made during my free time.",
       tech: ["Frontend", "Design"]
     }
   ];
@@ -301,6 +303,72 @@ export default function App() {
     </div>
   );
 
+  const Contact = () => (
+    <div className="w-full max-w-4xl mx-auto animate-in slide-in-from-bottom-8 duration-500">
+      <div className="text-center mb-12">
+        <h2 className="font-display text-4xl font-bold mb-4 text-slate-900 dark:text-white">Get in Touch</h2>
+        <p className="text-slate-500 dark:text-slate-400">
+          Have a project in mind or want to discuss linux automations?
+        </p>
+      </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+        <div className="space-y-8">
+          <div className="flex items-start gap-4">
+            <div className="p-3 bg-indigo-50 dark:bg-indigo-900/20 rounded-lg text-indigo-500">
+              <Mail size={24} />
+            </div>
+            <div>
+              <h3 className="font-bold text-slate-900 dark:text-white mb-1">Email</h3>
+              <p className="text-slate-600 dark:text-slate-400 text-sm">{personalInfo.email}</p>
+            </div>
+          </div>
+          
+          <div className="flex items-start gap-4">
+            <div className="p-3 bg-indigo-50 dark:bg-indigo-900/20 rounded-lg text-indigo-500">
+              <Phone size={24} />
+            </div>
+            <div>
+              <h3 className="font-bold text-slate-900 dark:text-white mb-1">Phone</h3>
+              <p className="text-slate-600 dark:text-slate-400 text-sm">{personalInfo.phone}</p>
+            </div>
+          </div>
+
+          <div className="flex items-start gap-4">
+            <div className="p-3 bg-indigo-50 dark:bg-indigo-900/20 rounded-lg text-indigo-500">
+              <MapPin size={24} />
+            </div>
+            <div>
+              <h3 className="font-bold text-slate-900 dark:text-white mb-1">Location</h3>
+              <p className="text-slate-600 dark:text-slate-400 text-sm">{personalInfo.location}</p>
+            </div>
+          </div>
+        </div>
+
+        <form className="space-y-4" onSubmit={(e) => e.preventDefault()}>
+          <div className="grid grid-cols-2 gap-4">
+            <div className="space-y-2">
+              <label className="text-sm font-medium text-slate-900 dark:text-white">Name</label>
+              <input type="text" placeholder="John Doe" className="w-full px-4 py-2 rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 focus:ring-2 focus:ring-indigo-500 outline-none transition-all" />
+            </div>
+            <div className="space-y-2">
+              <label className="text-sm font-medium text-slate-900 dark:text-white">Email</label>
+              <input type="email" placeholder="john@example.com" className="w-full px-4 py-2 rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 focus:ring-2 focus:ring-indigo-500 outline-none transition-all" />
+            </div>
+          </div>
+          <div className="space-y-2">
+            <label className="text-sm font-medium text-slate-900 dark:text-white">Message</label>
+            <textarea rows="4" placeholder="Tell me about your project..." className="w-full px-4 py-2 rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 focus:ring-2 focus:ring-indigo-500 outline-none transition-all resize-none"></textarea>
+          </div>
+          <button className="w-full py-3 bg-[#1a1a1a] dark:bg-white text-white dark:text-black rounded-lg font-medium hover:bg-black dark:hover:bg-slate-200 transition-colors flex items-center justify-center gap-2">
+            <Send size={18} />
+            Send Message
+          </button>
+        </form>
+      </div>
+    </div>
+  );
+
   return (
     <div className={isDark ? "dark" : ""}>
       <div className="min-h-screen bg-white dark:bg-slate-950 text-slate-900 dark:text-white font-body selection:bg-indigo-100 dark:selection:bg-indigo-900 overflow-x-hidden transition-colors duration-300 flex flex-col">
@@ -351,12 +419,12 @@ export default function App() {
               {isDark ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
             </button>
 
-            <a 
-              href="#contact"
+            <button 
+              onClick={() => setActiveTab('Contact')}
               className="ml-2 bg-[#1a1a1a] dark:bg-white text-white dark:text-black px-6 py-2.5 rounded-full text-sm font-medium hover:bg-black dark:hover:bg-slate-200 transition-colors"
             >
               Contact
-            </a>
+            </button>
           </nav>
         </div>
 
@@ -366,6 +434,7 @@ export default function App() {
           {activeTab === 'About' && <About />}
           {activeTab === 'Projects' && <Projects />}
           {activeTab === 'Blogs' && <Blogs />}
+          {activeTab === 'Contact' && <Contact />}
         </main>
 
         {/* Background Gradients */}
