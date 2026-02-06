@@ -52,6 +52,32 @@
         .dark ::-webkit-scrollbar-thumb {
             background: #334155;
         }
+
+        /* Custom Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .animate-card {
+            animation: fadeInUp 0.6s ease-out forwards;
+            opacity: 0; /* Start hidden */
+        }
+
+        .animate-page {
+            animation: fadeIn 0.4s ease-out forwards;
+        }
     </style>
 </head>
 <body>
@@ -236,7 +262,7 @@
           // --- Components ---
 
           const Hero = () => (
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center w-full relative animate-in fade-in duration-700">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center w-full relative">
               <div className="lg:col-span-4 flex flex-col items-center lg:items-end text-center lg:text-right z-10 order-2 lg:order-1">
                 <div className="mb-2 lg:mr-1">
                   <span className="block text-xs font-bold tracking-[0.25em] text-slate-500 dark:text-slate-400 uppercase mb-2">
@@ -283,7 +309,7 @@
           );
 
           const About = () => (
-            <div className="w-full max-w-5xl mx-auto animate-in slide-in-from-bottom-8 duration-500">
+            <div className="w-full max-w-5xl mx-auto">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mb-16">
                 <div>
                   <h2 className="font-display text-4xl font-bold mb-6 text-slate-900 dark:text-white">About Me</h2>
@@ -344,7 +370,7 @@
           );
 
           const Projects = () => (
-            <div className="w-full max-w-6xl mx-auto animate-in slide-in-from-bottom-8 duration-500">
+            <div className="w-full max-w-6xl mx-auto">
               <div className="text-center mb-12">
                 <h2 className="font-display text-4xl font-bold mb-4 text-slate-900 dark:text-white">Featured Projects</h2>
                 <p className="text-slate-500 dark:text-slate-400 max-w-2xl mx-auto">
@@ -354,7 +380,7 @@
 
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 {projects.map((project, idx) => (
-                  <div key={idx} className="group bg-white dark:bg-slate-900 rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-800 hover:border-indigo-500/50 hover:shadow-xl transition-all duration-300">
+                  <div key={idx} className="group bg-white dark:bg-slate-900 rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-800 hover:border-indigo-500/50 hover:shadow-xl transition-all duration-300 animate-card" style={{ animationDelay: `${idx * 150}ms` }}>
                     <div className="relative overflow-hidden h-48">
                       <div className="absolute inset-0 bg-slate-900/10 dark:bg-slate-900/40 group-hover:opacity-0 transition-opacity z-10" />
                       <img src={project.image} alt={project.title} className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500" />
@@ -383,7 +409,7 @@
           );
 
           const Blogs = () => (
-            <div className="w-full max-w-3xl mx-auto animate-in slide-in-from-bottom-8 duration-500">
+            <div className="w-full max-w-3xl mx-auto">
                <div className="text-center mb-12">
                 <h2 className="font-display text-4xl font-bold mb-4 text-slate-900 dark:text-white">Technical Insights</h2>
                 <p className="text-slate-500 dark:text-slate-400">
@@ -393,7 +419,7 @@
 
               <div className="space-y-6">
                 {blogs.map((blog, idx) => (
-                  <article key={idx} className="group relative bg-white dark:bg-slate-900 p-6 sm:p-8 rounded-2xl border border-slate-200 dark:border-slate-800 hover:border-indigo-500/50 transition-all duration-300">
+                  <article key={idx} className="group relative bg-white dark:bg-slate-900 p-6 sm:p-8 rounded-2xl border border-slate-200 dark:border-slate-800 hover:border-indigo-500/50 transition-all duration-300 animate-card" style={{ animationDelay: `${idx * 150}ms` }}>
                     <div className="flex flex-col sm:flex-row gap-4 sm:items-center justify-between mb-4">
                       <div className="flex items-center gap-3">
                         <span className="px-3 py-1 text-xs font-bold text-indigo-500 bg-indigo-50 dark:bg-indigo-900/30 rounded-full">{blog.tag}</span>
@@ -420,7 +446,7 @@
           );
 
           const Contact = () => (
-            <div className="w-full max-w-4xl mx-auto animate-in slide-in-from-bottom-8 duration-500">
+            <div className="w-full max-w-4xl mx-auto">
               <div className="text-center mb-12">
                 <h2 className="font-display text-4xl font-bold mb-4 text-slate-900 dark:text-white">Get in Touch</h2>
                 <p className="text-slate-500 dark:text-slate-400">
@@ -535,11 +561,13 @@
 
               {/* --- Main Content Area --- */}
               <main className="flex-grow flex flex-col items-center justify-center px-4 pt-32 pb-12 w-full max-w-[1600px] mx-auto min-h-screen relative z-10">
-                {activeTab === 'Home' && <Hero />}
-                {activeTab === 'About' && <About />}
-                {activeTab === 'Projects' && <Projects />}
-                {activeTab === 'Blogs' && <Blogs />}
-                {activeTab === 'Contact' && <Contact />}
+                <div key={activeTab} className="w-full animate-page">
+                    {activeTab === 'Home' && <Hero />}
+                    {activeTab === 'About' && <About />}
+                    {activeTab === 'Projects' && <Projects />}
+                    {activeTab === 'Blogs' && <Blogs />}
+                    {activeTab === 'Contact' && <Contact />}
+                </div>
               </main>
 
               {/* Background Gradients */}
