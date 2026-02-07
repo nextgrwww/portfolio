@@ -442,7 +442,7 @@
             </div>
           );
 
-          const Contact = () => (
+const Contact = () => (
             <div className="w-full max-w-4xl mx-auto">
               <div className="text-center mb-12">
                 <h2 className="font-display text-4xl font-bold mb-4 text-slate-900 dark:text-white">Get in Touch</h2>
@@ -450,8 +450,11 @@
                   Have a project in mind or want to discuss linux automations?
                 </p>
               </div>
-              <div className="flex items-start gap-4">
-                  <div className="p-3 bg-indigo-50 dark:bg-indigo-900/20 rounded-lg text-indigo-500">
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+                <div className="space-y-8">
+                  <div className="flex items-start gap-4">
+                    <div className="p-3 bg-indigo-50 dark:bg-indigo-900/20 rounded-lg text-indigo-500">
                       <IconMail size={24} />
                     </div>
                     <div>
@@ -514,7 +517,7 @@
               </div>
             </div>
           );
-
+            
           return (
             <div className="min-h-screen bg-white dark:bg-slate-950 text-slate-900 dark:text-white font-body selection:bg-indigo-100 dark:selection:bg-indigo-900 overflow-x-hidden transition-colors duration-300 flex flex-col">
               
